@@ -2,8 +2,8 @@
 A Python-based bot that checks whether a Twitch stream is live and sends an automated message to a specified Discord channel. Runs as a systemd service on Ubuntu.
 
 ## Project Structure
-├── bot.py # Main bot script
-├── .env # Environment variables (tokens/secrets)
+├── bot.py # Main bot script<br>
+├── .env # Environment variables (tokens/secrets)<br>
 └── README.md
 
 ## Tech Stack
@@ -17,7 +17,7 @@ A Python-based bot that checks whether a Twitch stream is live and sends an auto
 
 ## Run as a systemd service (Ubuntu)
 
-Create a service file `twitch-notifier.service`:
+Create a service file `twitch_bot.service`:
 ```ini
 [Unit]
 Description=Twitch Discord Bot
@@ -33,9 +33,11 @@ RestartSec=10
 [Install]
 WantedBy=multi-user.target
 ```
-sudo systemctl daemon-reexec
-sudo systemctl enable twitch-notifier
-sudo systemctl start twitch-notifier
+sudo systemctl daemon-reload<br>
+sudo systemctl start twitch_bot<br>
+sudo systemctl status twitch_bot<br>
+sudo journalctl -u twitch-bot -f<br>
+sudo journalctl -u twitch-bot --since today
 
 ## Result
 Once running, the bot will automatically check if a Twitch stream is live and notify a Discord channel whenever the stream starts.
